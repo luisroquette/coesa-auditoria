@@ -1,4 +1,3 @@
-import { Suspense } from "react";
 import { Navbar } from "@/components/navbar";
 import { Hero } from "@/components/hero";
 import { TrustBar } from "@/components/trust-bar";
@@ -8,6 +7,7 @@ import { WhatWeCheck } from "@/components/what-we-check";
 import { SocialProof } from "@/components/social-proof";
 import { FAQ } from "@/components/faq";
 import { Footer } from "@/components/footer";
+import { WhatsAppFloat } from "@/components/whatsapp-float";
 
 export default function Home() {
   return (
@@ -16,13 +16,12 @@ export default function Home() {
       <Hero />
       <TrustBar />
       <HowItWorks />
-      <Suspense>
-        <AuditForm />
-      </Suspense>
+      <AuditForm />
       <WhatWeCheck />
       <SocialProof />
       <FAQ />
       <Footer />
+      <WhatsAppFloat />
     </main>
   );
 }

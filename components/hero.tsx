@@ -1,12 +1,12 @@
 "use client";
 
-import { ChevronDown } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { ChevronDown, MessageCircle } from "lucide-react";
 import { motion } from "framer-motion";
+import { WHATSAPP_URL } from "@/lib/utils";
 
 export function Hero() {
-  const scrollToForm = () => {
-    document.querySelector("#auditoria")?.scrollIntoView({ behavior: "smooth" });
+  const scrollDown = () => {
+    document.querySelector("#como-funciona")?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
@@ -52,14 +52,15 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
-            <Button
-              onClick={scrollToForm}
-              variant="landing"
-              size="xl"
-              className="shadow-lg hover:shadow-xl transition-all min-w-[240px]"
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-3 bg-[#25D366] hover:bg-[#1ebe5d] text-white font-semibold text-lg px-8 py-4 rounded-sm shadow-lg hover:shadow-xl transition-all min-w-[280px]"
             >
+              <MessageCircle className="w-6 h-6" />
               Auditar minha fatura gratis
-            </Button>
+            </a>
           </motion.div>
 
           <motion.p
@@ -68,7 +69,7 @@ export function Hero() {
             transition={{ delay: 0.8 }}
             className="mt-6 text-sm text-white/40"
           >
-            100% gratis · Sem cadastro · Resultado imediato
+            100% gratis · Sem cadastro · Resposta imediata
           </motion.p>
         </motion.div>
       </div>
@@ -81,7 +82,7 @@ export function Hero() {
         transition={{ delay: 1.5, duration: 0.5 }}
       >
         <motion.button
-          onClick={scrollToForm}
+          onClick={scrollDown}
           className="text-white/40 hover:text-white transition-colors"
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}

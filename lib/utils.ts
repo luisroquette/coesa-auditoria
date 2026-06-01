@@ -23,3 +23,6 @@ export function parseCurrencyToNumber(value: string): number {
   const cleaned = value.replace(/[^\d,]/g, "").replace(",", ".");
   return parseFloat(cleaned) || 0;
 }
+
+export const WHATSAPP_URL =
+  "https://wa.me/5531936180209?text=Ol%C3%A1%2C%20quero%20uma%20auditoria%20gratuita%20na%20minha%20conta%20de%20luz.";

@@ -1,10 +1,10 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Menu, X, MessageCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import { WHATSAPP_URL } from "@/lib/utils";
 
 const navLinks = [
   { href: "#como-funciona", label: "Como Funciona" },
@@ -22,10 +22,6 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollToForm = () => {
-    document.querySelector("#auditoria")?.scrollIntoView({ behavior: "smooth" });
-    setIsMobileMenuOpen(false);
-  };
 
   return (
     <>
@@ -62,14 +58,15 @@ export function Navbar() {
             </div>
 
             <div className="hidden lg:block">
-              <Button
-                onClick={scrollToForm}
-                variant="landing"
-                size="sm"
-                className="px-6"
+              <a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#1ebe5d] text-white font-semibold text-sm px-5 py-2.5 rounded-sm transition-colors"
               >
+                <MessageCircle className="w-4 h-4" />
                 Auditar Fatura
-              </Button>
+              </a>
             </div>
 
             <button
@@ -102,14 +99,16 @@ export function Navbar() {
                   {link.label}
                 </a>
               ))}
-              <Button
-                onClick={scrollToForm}
-                variant="landing"
-                size="lg"
-                className="mt-4 w-full py-6"
+              <a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#1ebe5d] text-white font-semibold text-lg py-4 px-6 rounded-sm transition-colors w-full"
+                onClick={() => setIsMobileMenuOpen(false)}
               >
-                Auditar Fatura
-              </Button>
+                <MessageCircle className="w-5 h-5" />
+                Auditar Fatura Gratis
+              </a>
             </div>
           </motion.div>
         )}

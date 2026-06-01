@@ -1,6 +1,7 @@
 "use client";
 
-import { TrendingUp, MapPin, Calendar } from "lucide-react";
+import { TrendingUp, MapPin, Calendar, MessageCircle } from "lucide-react";
+import { WHATSAPP_URL } from "@/lib/utils";
 import { motion } from "framer-motion";
 
 export function SocialProof() {
@@ -87,6 +88,24 @@ export function SocialProof() {
           <p className="text-xs text-center text-muted-foreground mt-6">
             * Informacoes pessoais removidas para protecao do cliente. Resultado real de auditoria.
           </p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="text-center mt-10"
+          >
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-3 bg-[#25D366] hover:bg-[#1ebe5d] text-white font-semibold text-lg px-8 py-4 rounded-sm shadow-md hover:shadow-lg transition-all"
+            >
+              <MessageCircle className="w-5 h-5" />
+              Quero auditar minha fatura
+            </a>
+          </motion.div>
         </motion.div>
       </div>
     </section>

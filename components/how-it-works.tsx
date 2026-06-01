@@ -1,27 +1,28 @@
 "use client";
 
-import { ClipboardList, Search, BarChart3 } from "lucide-react";
+import { MessageCircle, Search, BarChart3 } from "lucide-react";
 import { motion } from "framer-motion";
+import { WHATSAPP_URL } from "@/lib/utils";
 
 const steps = [
   {
     num: "01",
-    icon: ClipboardList,
-    title: "Preencha seus dados",
+    icon: MessageCircle,
+    title: "Clique no botao abaixo",
     description:
-      "Informe o valor da sua fatura mensal e sua concessionaria. Leva menos de 1 minuto.",
+      "Acesse o WhatsApp e envie a mensagem com um clique. Sem cadastro, sem formularios.",
   },
   {
     num: "02",
     icon: Search,
-    title: "Analisamos sua fatura",
+    title: "Consultor analisa sua fatura",
     description:
-      "Nosso sistema verifica 17 pontos criticos da sua conta de energia automaticamente.",
+      "Nosso especialista verifica 17 pontos criticos da sua conta de energia gratuitamente.",
   },
   {
     num: "03",
     icon: BarChart3,
-    title: "Veja o resultado",
+    title: "Receba o resultado",
     description:
       "Descubra quanto voce pode economizar e receba uma proposta personalizada.",
   },
@@ -49,7 +50,7 @@ export function HowItWorks() {
           </h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-12 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-12 max-w-5xl mx-auto mb-14">
           {steps.map((step, index) => (
             <motion.div
               key={step.num}
@@ -77,6 +78,25 @@ export function HowItWorks() {
             </motion.div>
           ))}
         </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="text-center"
+        >
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-3 bg-[#25D366] hover:bg-[#1ebe5d] text-white font-semibold text-lg px-8 py-4 rounded-sm shadow-md hover:shadow-lg transition-all"
+          >
+            <MessageCircle className="w-5 h-5" />
+            Auditar minha fatura agora
+          </a>
+          <p className="mt-3 text-sm text-muted-foreground">100% gratuito · Sem compromisso</p>
+        </motion.div>
       </div>
     </section>
   );
