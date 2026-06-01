@@ -204,6 +204,42 @@ const faqSchema = {
   ],
 };
 
+const howToSchema = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "@id": "https://auditoria.coesasolar.com.br/#howto",
+  name: "Como solicitar uma auditoria gratuita de conta de energia",
+  description:
+    "Passo a passo para solicitar a auditoria gratuita de conta de energia da COESA pelo WhatsApp e identificar cobranças indevidas na fatura de luz.",
+  tool: [
+    { "@type": "HowToTool", name: "WhatsApp" },
+    { "@type": "HowToTool", name: "Fatura de energia elétrica (opcional)" },
+  ],
+  step: [
+    {
+      "@type": "HowToStep",
+      position: 1,
+      name: "Clique no botão do WhatsApp",
+      text: "Acesse o WhatsApp e envie a mensagem com um clique. Sem cadastro, sem formulários.",
+      url: "https://auditoria.coesasolar.com.br/#como-funciona",
+    },
+    {
+      "@type": "HowToStep",
+      position: 2,
+      name: "Consultor analisa sua fatura",
+      text: "Nosso especialista verifica 17 pontos críticos da sua conta de energia gratuitamente, incluindo ICMS, bandeira tarifária, enquadramento e créditos de energia solar.",
+      url: "https://auditoria.coesasolar.com.br/#como-funciona",
+    },
+    {
+      "@type": "HowToStep",
+      position: 3,
+      name: "Receba o resultado",
+      text: "Em até 24 horas úteis você recebe o diagnóstico completo. Descubra quanto pode economizar e receba uma proposta personalizada sem compromisso.",
+      url: "https://auditoria.coesasolar.com.br/#como-funciona",
+    },
+  ],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -227,6 +263,10 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
         />
       </head>
       <body

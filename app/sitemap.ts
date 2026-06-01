@@ -3,6 +3,7 @@ import { distribuidoras } from "@/lib/distribuidoras";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const blogSlugs = [
+    "auditoria-conta-de-energia",
     "icms-conta-de-energia",
     "bandeira-tarifaria",
     "enquadramento-tarifario",

@@ -1,6 +1,6 @@
 "use client";
 
-import { TrendingUp, MapPin, Calendar, MessageCircle, Star } from "lucide-react";
+import { TrendingUp, MapPin, Calendar, MessageCircle, Star, Sun } from "lucide-react";
 import { WHATSAPP_URL } from "@/lib/utils";
 
 const testimonials = [
@@ -37,19 +37,26 @@ export function SocialProof() {
         {/* Featured case study */}
         <div className="max-w-3xl mx-auto mb-12">
           <div className="bg-white border border-border rounded-lg p-8 lg:p-12 shadow-sm">
+            {/* Solar badge */}
+            <div className="inline-flex items-center gap-2 bg-yellow-50 border border-yellow-200 rounded-full px-3 py-1.5 mb-6">
+              <Sun className="w-3.5 h-3.5 text-yellow-500" />
+              <span className="text-xs font-semibold text-yellow-700">Créditos solares não aplicados pela distribuidora</span>
+            </div>
+
             <div className="flex flex-wrap items-center gap-4 mb-8 text-sm text-muted-foreground">
               <span className="inline-flex items-center gap-1.5">
                 <MapPin className="w-4 h-4" /> Minas Gerais
               </span>
               <span className="inline-flex items-center gap-1.5">
-                <Calendar className="w-4 h-4" /> Consumidor comercial
+                <Calendar className="w-4 h-4" /> Consumidor comercial — CEMIG
               </span>
             </div>
 
             <p className="text-lg text-foreground leading-relaxed mb-8">
               &ldquo;Cliente com conta mensal de R$ 5.291 na CEMIG. A auditoria
-              identificou que créditos de energia solar injetada não estavam
-              sendo descontados da fatura.&rdquo;
+              identificou que os créditos de energia solar injetada na rede
+              <strong> não estavam sendo descontados da fatura há mais de 12 meses</strong> —
+              a distribuidora recebia a energia gerada mas não compensava o cliente.&rdquo;
             </p>
 
             <div className="grid grid-cols-2 md:grid-cols-3 gap-6 pt-8 border-t border-border">

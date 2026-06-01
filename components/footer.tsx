@@ -89,12 +89,30 @@ export function Footer() {
           </div>
         </div>
 
+        {/* Authority bar */}
+        <div className="border-t border-white/10 pt-6 mb-6">
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-white/30">
+            <span>Auditoria baseada na Resolução Normativa ANEEL nº 1.000/2021</span>
+            <span className="hidden sm:inline text-white/15">·</span>
+            <span>Lei Geral de Proteção de Dados — Lei nº 13.709/2018</span>
+            <span className="hidden sm:inline text-white/15">·</span>
+            <a
+              href="https://www.reclameaqui.com.br/busca/?q=coesa+energia"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white/60 transition-colors underline underline-offset-2"
+            >
+              Buscar COESA no Reclame Aqui
+            </a>
+          </div>
+        </div>
+
         {/* Bottom bar */}
-        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-xs text-white/30">
-            &copy; {new Date().getFullYear()} COESA Energia. Todos os direitos reservados.
+            &copy; {new Date().getFullYear()} COESA Energia — CNPJ 54.016.051/0001-75. Todos os direitos reservados.
           </p>
-          <p className="text-xs text-white/25">LGPD — Seus dados protegidos conforme a Lei nº 13.709/2018</p>
+          <p className="text-xs text-white/20">Energia regulada pela ANEEL · Todo o Brasil</p>
         </div>
       </div>
     </footer>

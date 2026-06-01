@@ -22,6 +22,14 @@ export const metadata: Metadata = {
 
 const posts = [
   {
+    slug: "auditoria-conta-de-energia",
+    title: "Auditoria de Conta de Energia: guia completo para identificar cobranças indevidas",
+    description:
+      "O que é uma auditoria de conta de energia, quais são os 12 erros mais comuns nas faturas de luz, como funciona o processo e qual é o seu direito à devolução dos valores pagos a mais.",
+    category: "Guia",
+    readingTime: "10 min",
+  },
+  {
     slug: "icms-conta-de-energia",
     title: "ICMS na Conta de Energia: o que é e como verificar se está correto",
     description:
