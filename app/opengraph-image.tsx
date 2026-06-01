@@ -87,7 +87,7 @@ export default async function Image() {
             fontFamily: "Arial",
           }}
         >
-          17 verificações automáticas · Resultado em 30 segundos
+          17 verificações · Resultado em até 24h úteis
         </div>
 
         {/* Brand pill */}

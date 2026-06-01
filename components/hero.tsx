@@ -72,7 +72,7 @@ export function Hero() {
             transition={{ delay: 0.8 }}
             className="mt-6 text-sm text-white/40"
           >
-            100% grátis · Sem cadastro · Resposta imediata
+            100% grátis · Sem cadastro · Resposta em até 24h
           </motion.p>
         </div>
       </div>
