@@ -41,6 +41,11 @@ export const metadata: Metadata = {
     images: ["/opengraph-image"],
   },
   robots: { index: true, follow: true },
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
+  manifest: "/manifest.json",
 };
 
 const organizationSchema = {
