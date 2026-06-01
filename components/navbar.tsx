@@ -25,10 +25,7 @@ export function Navbar() {
 
   return (
     <>
-      <motion.header
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.5 }}
+      <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled ? "bg-black/90 backdrop-blur-md" : "bg-transparent"
         }`}
@@ -41,6 +38,7 @@ export function Navbar() {
                 alt="COESA Energia"
                 width={120}
                 height={40}
+                priority
                 className="h-8 lg:h-10 w-auto"
               />
             </a>
@@ -78,7 +76,7 @@ export function Navbar() {
             </button>
           </nav>
         </div>
-      </motion.header>
+      </header>
 
       <AnimatePresence>
         {isMobileMenuOpen && (

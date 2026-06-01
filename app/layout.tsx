@@ -22,6 +22,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://auditoria.coesasolar.com.br"),
   alternates: {
     canonical: "https://auditoria.coesasolar.com.br",
+    languages: { "pt-BR": "https://auditoria.coesasolar.com.br" },
   },
   openGraph: {
     title: "Sua conta de energia pode estar errada",
@@ -31,6 +32,13 @@ export const metadata: Metadata = {
     locale: "pt_BR",
     url: "https://auditoria.coesasolar.com.br",
     siteName: "COESA Energia",
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Auditoria Gratuita de Fatura de Energia" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Sua conta de energia pode estar errada",
+    description: "Auditoria gratuita de fatura de energia. 17 verificações automáticas.",
+    images: ["/opengraph-image"],
   },
   robots: { index: true, follow: true },
 };

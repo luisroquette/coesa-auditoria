@@ -15,23 +15,20 @@ export function Hero() {
       <div className="absolute inset-0 bg-gradient-to-br from-[#0a0a0a] via-[#0f1a0f] to-[#0a0a0a]" />
 
       <div className="relative z-10 container mx-auto px-4 text-center text-white pt-20">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: "easeOut" }}
-          className="max-w-4xl mx-auto"
-        >
+        {/* Plain div — H1 visible immediately, no opacity:0 wrapper (LCP fix) */}
+        <div className="max-w-4xl mx-auto">
           {/* Badge */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
             className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/10 rounded-full px-4 py-2 mb-8"
           >
             <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
             <span className="text-sm text-white/80">Auditoria 100% gratuita</span>
           </motion.div>
 
+          {/* H1 static — rendered immediately by server, no animation delay */}
           <h1
             className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl mb-6 leading-tight text-white font-medium tracking-tight"
             style={{ fontFamily: "Arial, Helvetica, sans-serif" }}
@@ -41,10 +38,15 @@ export function Hero() {
             pode estar errada
           </h1>
 
-          <p className="text-lg md:text-xl text-white/70 mb-10 font-light tracking-wide max-w-2xl mx-auto">
-            Descubra em 30 segundos se voce esta pagando mais do que deveria.
-            Auditoria gratuita com 17 verificacoes automaticas.
-          </p>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-lg md:text-xl text-white/70 mb-10 font-light tracking-wide max-w-2xl mx-auto"
+          >
+            Descubra em 30 segundos se você está pagando mais do que deveria.
+            Auditoria gratuita com 17 verificações automáticas.
+          </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 10 }}
@@ -59,7 +61,7 @@ export function Hero() {
               className="inline-flex items-center justify-center gap-3 bg-[#25D366] hover:bg-[#1ebe5d] text-white font-semibold text-lg px-8 py-4 rounded-sm shadow-lg hover:shadow-xl transition-all min-w-[280px]"
             >
               <MessageCircle className="w-6 h-6" />
-              Auditar minha fatura gratis
+              Auditar minha fatura grátis
             </a>
           </motion.div>
 
@@ -69,9 +71,9 @@ export function Hero() {
             transition={{ delay: 0.8 }}
             className="mt-6 text-sm text-white/40"
           >
-            100% gratis · Sem cadastro · Resposta imediata
+            100% grátis · Sem cadastro · Resposta imediata
           </motion.p>
-        </motion.div>
+        </div>
       </div>
 
       {/* Scroll indicator */}
