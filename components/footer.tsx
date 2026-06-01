@@ -28,9 +28,9 @@ export function Footer() {
           <p className="text-xs text-white/30">
             &copy; {new Date().getFullYear()} COESA Energia. Todos os direitos reservados.
           </p>
-          <div className="flex items-center gap-6 text-xs text-white/30">
-            <span>Politica de Privacidade</span>
-            <span>Termos de Uso</span>
+          <div className="flex items-center gap-6 text-xs text-white/40">
+            <a href="/privacidade" className="hover:text-white/70 transition-colors">Política de Privacidade</a>
+            <a href="/termos" className="hover:text-white/70 transition-colors">Termos de Uso</a>
             <span>LGPD</span>
           </div>
         </div>

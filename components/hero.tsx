@@ -44,8 +44,9 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-lg md:text-xl text-white/70 mb-10 font-light tracking-wide max-w-2xl mx-auto"
           >
-            Descubra em 30 segundos se você está pagando mais do que deveria.
-            Auditoria gratuita com 17 verificações automáticas.
+            Solicite uma auditoria de conta de energia gratuita e descubra se
+            você está pagando mais do que deveria. Verificamos 17 pontos da sua
+            fatura de luz — sem cadastro, sem compromisso.
           </motion.p>
 
           <motion.div

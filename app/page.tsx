@@ -4,6 +4,7 @@ import { Hero } from "@/components/hero";
 import { TrustBar } from "@/components/trust-bar";
 import { HowItWorks } from "@/components/how-it-works";
 import { AuditForm } from "@/components/audit-form";
+import { AboutService } from "@/components/about-service";
 import { WhatWeCheck } from "@/components/what-we-check";
 import { SocialProof } from "@/components/social-proof";
 import { FAQ } from "@/components/faq";
@@ -25,6 +26,7 @@ export default function Home() {
       <TrustBar />
       <HowItWorks />
       <AuditForm />
+      <AboutService />
       <WhatWeCheck />
       <SocialProof />
       <FAQ />

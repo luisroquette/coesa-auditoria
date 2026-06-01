@@ -1,38 +1,41 @@
 "use client";
 
-import { TrendingUp, MapPin, Calendar, MessageCircle } from "lucide-react";
+import { TrendingUp, MapPin, Calendar, MessageCircle, Star } from "lucide-react";
 import { WHATSAPP_URL } from "@/lib/utils";
-import { motion } from "framer-motion";
+
+const testimonials = [
+  {
+    text: "Achei que pagar R$ 380 por mês era normal. O consultor COESA identificou que meu ICMS estava sendo calculado errado há mais de um ano. Recuperamos R$ 3.200 em créditos.",
+    name: "Fernanda M.",
+    location: "Belo Horizonte - MG",
+    type: "Cliente residencial",
+  },
+  {
+    text: "Empresa do ramo alimentício. A auditoria identificou que nosso enquadramento tarifário estava incorreto para o nosso perfil de consumo. A mudança reduziu 28% da fatura mensal.",
+    name: "Ricardo T.",
+    location: "São Paulo - SP",
+    type: "Cliente comercial",
+  },
+];
 
 export function SocialProof() {
   return (
     <section className="py-20 lg:py-32 bg-[#f8faf8]">
       <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
+        <div className="text-center mb-16">
           <p className="text-sm font-medium text-muted-foreground tracking-widest uppercase mb-4">
-            Caso real
+            Casos reais
           </p>
           <h2
             className="text-3xl md:text-4xl lg:text-5xl font-medium text-foreground tracking-tight"
             style={{ fontFamily: "Arial, Helvetica, sans-serif" }}
           >
-            Resultado de auditoria
+            Resultados de auditoria
           </h2>
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="max-w-3xl mx-auto"
-        >
+        {/* Featured case study */}
+        <div className="max-w-3xl mx-auto mb-12">
           <div className="bg-white border border-border rounded-lg p-8 lg:p-12 shadow-sm">
             <div className="flex flex-wrap items-center gap-4 mb-8 text-sm text-muted-foreground">
               <span className="inline-flex items-center gap-1.5">
@@ -45,7 +48,7 @@ export function SocialProof() {
 
             <p className="text-lg text-foreground leading-relaxed mb-8">
               &ldquo;Cliente com conta mensal de R$ 5.291 na CEMIG. A auditoria
-              identificou que creditos de energia solar injetada nao estavam
+              identificou que créditos de energia solar injetada não estavam
               sendo descontados da fatura.&rdquo;
             </p>
 
@@ -61,14 +64,14 @@ export function SocialProof() {
                 <p className="text-xs text-muted-foreground">por ano</p>
               </div>
               <div>
-                <p className="text-sm text-muted-foreground mb-1">Reducao na fatura</p>
+                <p className="text-sm text-muted-foreground mb-1">Redução na fatura</p>
                 <p
                   className="text-2xl md:text-3xl font-medium text-foreground"
                   style={{ fontFamily: "Arial, Helvetica, sans-serif" }}
                 >
                   R$ 3.917
                 </p>
-                <p className="text-xs text-muted-foreground">por mes</p>
+                <p className="text-xs text-muted-foreground">por mês</p>
               </div>
               <div className="col-span-2 md:col-span-1">
                 <p className="text-sm text-muted-foreground mb-1">Desconto</p>
@@ -86,27 +89,41 @@ export function SocialProof() {
           </div>
 
           <p className="text-xs text-center text-muted-foreground mt-6">
-            * Informacoes pessoais removidas para protecao do cliente. Resultado real de auditoria.
+            * Informações pessoais removidas para proteção do cliente. Resultado real de auditoria.
           </p>
+        </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="text-center mt-10"
+        {/* Testimonials */}
+        <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto mb-12">
+          {testimonials.map((t) => (
+            <div key={t.name} className="bg-white border border-border rounded-lg p-6 shadow-sm">
+              <div className="flex gap-0.5 mb-4">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                ))}
+              </div>
+              <p className="text-foreground/80 leading-relaxed mb-4 text-sm">
+                &ldquo;{t.text}&rdquo;
+              </p>
+              <div>
+                <p className="font-medium text-foreground text-sm">{t.name}</p>
+                <p className="text-xs text-muted-foreground">{t.location} · {t.type}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="text-center">
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-3 bg-[#25D366] hover:bg-[#1ebe5d] text-white font-semibold text-lg px-8 py-4 rounded-sm shadow-md hover:shadow-lg transition-all"
           >
-            <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-3 bg-[#25D366] hover:bg-[#1ebe5d] text-white font-semibold text-lg px-8 py-4 rounded-sm shadow-md hover:shadow-lg transition-all"
-            >
-              <MessageCircle className="w-5 h-5" />
-              Quero auditar minha fatura
-            </a>
-          </motion.div>
-        </motion.div>
+            <MessageCircle className="w-5 h-5" />
+            Quero auditar minha fatura
+          </a>
+        </div>
       </div>
     </section>
   );

@@ -16,9 +16,9 @@ const openSans = Open_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Auditoria Gratuita de Fatura de Energia | COESA Energia",
+  title: "Auditoria Gratuita de Conta de Luz — Identificamos Cobranças Indevidas | COESA",
   description:
-    "Descubra em 30 segundos se você está pagando mais do que deveria na sua conta de energia. Auditoria gratuita com 17 verificações automáticas.",
+    "Solicite sua auditoria gratuita de conta de energia pelo WhatsApp. Um consultor COESA analisa 17 pontos da sua fatura e identifica cobranças indevidas.",
   metadataBase: new URL("https://auditoria.coesasolar.com.br"),
   alternates: {
     canonical: "https://auditoria.coesasolar.com.br",
@@ -48,8 +48,8 @@ const organizationSchema = {
   "@type": "Organization",
   "@id": "https://auditoria.coesasolar.com.br/#organization",
   name: "COESA Energia",
-  url: "https://coesasolar.com.br",
-  sameAs: ["https://auditoria.coesasolar.com.br"],
+  url: "https://auditoria.coesasolar.com.br",
+  sameAs: ["https://coesasolar.com.br"],
   contactPoint: {
     "@type": "ContactPoint",
     telephone: "+55-31-93618-0209",
@@ -113,7 +113,7 @@ const faqSchema = {
       name: "A auditoria é realmente gratuita?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Sim, 100% gratuita. Nosso objetivo é identificar oportunidades de economia na sua conta de energia. Se houver potencial de redução, um consultor entrará em contato para apresentar uma proposta personalizada.",
+        text: "Sim, 100% gratuita — sem taxas, sem cadastro obrigatório e sem compromisso. Não cobramos nada para analisar a sua conta de energia, nem durante a auditoria nem depois dela. Nosso modelo de negócio é baseado em resultado: identificamos oportunidades de economia na sua fatura. Se encontrarmos potencial de redução, um consultor COESA apresenta uma proposta personalizada, geralmente envolvendo energia solar por assinatura — um serviço que você só contrata se quiser. Caso a auditoria não encontre nenhuma cobrança indevida ou oportunidade de economia, encerramos a conversa por ali, sem qualquer custo ou pressão. Já auditamos faturas de mais de 3.000 clientes em todo o Brasil. Em média, identificamos economia de 20% a 30% nas contas analisadas.",
       },
     },
     {
@@ -121,7 +121,7 @@ const faqSchema = {
       name: "Quais concessionárias são atendidas?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Atendemos todas as distribuidoras reguladas pela ANEEL em todo o Brasil, incluindo CEMIG, Enel, CPFL, Energisa, Copel, Light, Equatorial, Neoenergia, Celesc, entre outras.",
+        text: "Atendemos clientes de todas as distribuidoras de energia reguladas pela ANEEL em todo o território brasileiro. Isso inclui as principais concessionárias do país: CEMIG (Minas Gerais), Enel (São Paulo, Rio de Janeiro, Goiás, Ceará), CPFL (São Paulo e outros estados), Energisa (Minas Gerais, Mato Grosso, Paraíba e outros), Copel (Paraná), Light (Rio de Janeiro), Equatorial (Maranhão, Pará, Piauí, Alagoas, Goiás), Neoenergia (Bahia, Pernambuco), Celesc (Santa Catarina), entre outras. Nossa equipe de consultores tem experiência com a estrutura tarifária de cada distribuidora, o que nos permite identificar cobranças indevidas com precisão, independente da sua localização no Brasil.",
       },
     },
     {
@@ -129,7 +129,7 @@ const faqSchema = {
       name: "Meus dados estão seguros?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Sim. Seguimos rigorosamente a LGPD (Lei Geral de Proteção de Dados). Seus dados são criptografados e utilizados exclusivamente para a análise da sua fatura. Não compartilhamos informações com terceiros.",
+        text: "Sim, seus dados estão totalmente protegidos. Seguimos rigorosamente a LGPD (Lei Geral de Proteção de Dados, Lei nº 13.709/2018). As informações compartilhadas durante a auditoria — como o valor da sua conta de energia e o nome da distribuidora — são utilizadas exclusivamente para a análise da sua fatura. Não vendemos, alugamos nem compartilhamos seus dados com terceiros sob nenhuma hipótese. Você pode solicitar a exclusão dos seus dados a qualquer momento, conforme garantido pela LGPD. A COESA Energia atua no setor energético há mais de 5 anos e o compromisso com a segurança das informações é parte fundamental da nossa operação.",
       },
     },
     {
@@ -137,7 +137,7 @@ const faqSchema = {
       name: "O que acontece após a auditoria?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Se identificarmos oportunidade de economia, um consultor COESA entrará em contato pelo WhatsApp para apresentar uma proposta sem compromisso.",
+        text: "Após o envio das suas informações pelo WhatsApp, um consultor COESA inicia a análise da sua fatura de energia. Em menos de 24 horas úteis, você recebe o resultado detalhado. Se identificarmos oportunidades de economia — como enquadramento tarifário inadequado, cobranças duplicadas ou ICMS calculado incorretamente — o consultor apresenta uma proposta personalizada, sem custo e sem compromisso. Você analisa com calma e decide se quer prosseguir, sem pressão de tempo. Caso a auditoria não encontre nenhuma irregularidade ou oportunidade relevante, informamos diretamente e encerramos o atendimento.",
       },
     },
     {
@@ -145,7 +145,7 @@ const faqSchema = {
       name: "Preciso enviar minha fatura?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Não. Para a auditoria inicial basta informar o valor médio da sua conta de energia e a sua concessionária. Não é necessário enviar a fatura nem fazer nenhum cadastro.",
+        text: "Não é necessário enviar a fatura de energia para a auditoria inicial. Para a primeira análise, basta informar ao consultor pelo WhatsApp o valor médio da sua conta de energia elétrica e o nome da distribuidora — por exemplo, CEMIG, Enel ou CPFL. Com essas duas informações já conseguimos identificar os principais pontos de atenção e estimar o potencial de economia. Em alguns casos, quando identificamos oportunidades específicas que exigem análise mais detalhada, o consultor pode solicitar uma foto ou PDF da fatura. Nesse caso, o envio é simples e feito diretamente no WhatsApp. Todo o processo é conduzido por um especialista humano.",
       },
     },
     {
@@ -153,7 +153,7 @@ const faqSchema = {
       name: "Como funciona o desconto na conta de energia?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Através da energia solar por assinatura. Você recebe créditos de energia gerada em usinas solares que são abatidos diretamente da sua conta, sem necessidade de instalar painéis ou fazer qualquer investimento.",
+        text: "O desconto na conta de energia é obtido por meio da energia solar por assinatura — também chamada de geração distribuída remota. A COESA instala e opera usinas solares fotovoltaicas, e os créditos de energia gerada são alocados diretamente na sua conta junto à distribuidora. Cada mês, esses créditos são descontados automaticamente da sua fatura, sem que você precise fazer nada. Não é necessário instalar painéis solares no seu imóvel, nem fazer qualquer obra ou investimento inicial. A economia varia conforme o perfil de consumo e a distribuidora, mas em média nossos clientes reduzem entre 20% e 30% no valor da conta de energia.",
       },
     },
     {
@@ -161,7 +161,7 @@ const faqSchema = {
       name: "Quanto tempo leva para ter o resultado?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "O resultado da auditoria automática aparece em menos de 30 segundos após você preencher as informações solicitadas.",
+        text: "O processo é rápido e conduzido de forma humanizada pelo WhatsApp. Após enviar suas informações — basicamente o valor médio da conta de energia e o nome da distribuidora — um consultor COESA retorna com o resultado da análise em até 24 horas úteis. Durante o atendimento, o consultor explica passo a passo o que foi encontrado: quais pontos da fatura foram verificados, se há cobranças em desacordo com a legislação vigente da ANEEL e qual é o potencial de economia estimado. Nosso horário de atendimento é de segunda a sexta, das 8h às 18h (horário de Brasília).",
       },
     },
   ],

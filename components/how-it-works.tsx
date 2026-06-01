@@ -1,30 +1,29 @@
 "use client";
 
 import { MessageCircle, Search, BarChart3 } from "lucide-react";
-import { motion } from "framer-motion";
 import { WHATSAPP_URL } from "@/lib/utils";
 
 const steps = [
   {
     num: "01",
     icon: MessageCircle,
-    title: "Clique no botao abaixo",
+    title: "Clique no botão abaixo",
     description:
-      "Acesse o WhatsApp e envie a mensagem com um clique. Sem cadastro, sem formularios.",
+      "Acesse o WhatsApp e envie a mensagem com um clique. Sem cadastro, sem formulários.",
   },
   {
     num: "02",
     icon: Search,
     title: "Consultor analisa sua fatura",
     description:
-      "Nosso especialista verifica 17 pontos criticos da sua conta de energia gratuitamente.",
+      "Nosso especialista verifica 17 pontos críticos da sua conta de energia gratuitamente.",
   },
   {
     num: "03",
     icon: BarChart3,
     title: "Receba o resultado",
     description:
-      "Descubra quanto voce pode economizar e receba uma proposta personalizada.",
+      "Descubra quanto você pode economizar e receba uma proposta personalizada.",
   },
 ];
 
@@ -32,34 +31,21 @@ export function HowItWorks() {
   return (
     <section id="como-funciona" className="py-20 lg:py-32 bg-white">
       <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
+        <div className="text-center mb-16">
           <p className="text-sm font-medium text-muted-foreground tracking-widest uppercase mb-4">
-            Simples e rapido
+            Simples e rápido
           </p>
           <h2
             className="text-3xl md:text-4xl lg:text-5xl font-medium text-foreground tracking-tight"
             style={{ fontFamily: "Arial, Helvetica, sans-serif" }}
           >
-            Como funciona
+            Como funciona a auditoria de conta de energia
           </h2>
-        </motion.div>
+        </div>
 
         <div className="grid md:grid-cols-3 gap-12 max-w-5xl mx-auto mb-14">
-          {steps.map((step, index) => (
-            <motion.div
-              key={step.num}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.15 }}
-              className="text-center"
-            >
+          {steps.map((step) => (
+            <div key={step.num} className="text-center">
               <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-6">
                 <step.icon className="w-7 h-7 text-primary" />
               </div>
@@ -75,17 +61,11 @@ export function HowItWorks() {
               <p className="text-muted-foreground leading-relaxed">
                 {step.description}
               </p>
-            </motion.div>
+            </div>
           ))}
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="text-center"
-        >
+        <div className="text-center">
           <a
             href={WHATSAPP_URL}
             target="_blank"
@@ -96,7 +76,7 @@ export function HowItWorks() {
             Auditar minha fatura agora
           </a>
           <p className="mt-3 text-sm text-muted-foreground">100% gratuito · Sem compromisso</p>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
