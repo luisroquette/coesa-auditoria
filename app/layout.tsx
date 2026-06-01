@@ -48,6 +48,38 @@ export const metadata: Metadata = {
   manifest: "/manifest.json",
 };
 
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": "https://auditoria.coesasolar.com.br/#localbusiness",
+  name: "COESA Energia — Auditoria de Conta de Luz",
+  description:
+    "Auditoria gratuita de conta de energia elétrica pelo WhatsApp. Identificamos cobranças indevidas em faturas de luz em todo o Brasil.",
+  url: "https://auditoria.coesasolar.com.br",
+  telephone: "+55-31-93618-0209",
+  email: "contato@coesasolar.com.br",
+  address: {
+    "@type": "PostalAddress",
+    addressCountry: "BR",
+    addressRegion: "MG",
+    addressLocality: "Belo Horizonte",
+  },
+  areaServed: {
+    "@type": "Country",
+    name: "Brazil",
+  },
+  priceRange: "Gratuito",
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "08:00",
+      closes: "18:00",
+    },
+  ],
+  sameAs: ["https://coesasolar.com.br"],
+};
+
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
@@ -180,6 +212,10 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className="scroll-smooth">
       <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
