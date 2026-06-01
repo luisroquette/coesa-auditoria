@@ -19,7 +19,7 @@ export function WhatsAppFloat() {
     >
       {/* Expanded label on hover */}
       <span className="max-w-0 overflow-hidden group-hover:max-w-[200px] transition-all duration-300 whitespace-nowrap pl-0 group-hover:pl-5 text-sm">
-        Auditar gratis no WhatsApp
+        Auditar grátis no WhatsApp
       </span>
       <span className="w-14 h-14 flex items-center justify-center flex-shrink-0">
         <MessageCircle className="w-7 h-7" />

@@ -8,7 +8,7 @@ import { WHATSAPP_URL } from "@/lib/utils";
 
 const navLinks = [
   { href: "#como-funciona", label: "Como Funciona" },
-  { href: "#verificacoes", label: "Verificacoes" },
+  { href: "#verificacoes", label: "Verificações" },
   { href: "#faq", label: "FAQ" },
 ];
 
@@ -105,7 +105,7 @@ export function Navbar() {
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 <MessageCircle className="w-5 h-5" />
-                Auditar Fatura Gratis
+                Auditar Fatura Grátis
               </a>
             </div>
           </motion.div>

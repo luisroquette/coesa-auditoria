@@ -1,16 +1,15 @@
 "use client";
 
 import { MessageCircle, CheckCircle2, Lock, Star } from "lucide-react";
-import { motion } from "framer-motion";
 import { WHATSAPP_URL } from "@/lib/utils";
 
 const checkItems = [
-  "Tarifa aplicada e classe tarifaria",
+  "Tarifa aplicada e classe tarifária",
   "ICMS, PIS/COFINS e impostos",
-  "Bandeira tarifaria vigente",
+  "Bandeira tarifária vigente",
   "Consumo faturado vs. medido",
-  "Creditos de energia solar",
-  "Iluminacao publica (CIP)",
+  "Créditos de energia solar",
+  "Iluminação pública (CIP)",
 ];
 
 export function AuditForm() {
@@ -19,13 +18,7 @@ export function AuditForm() {
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
           {/* Left column — copy */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-white"
-          >
+          <div className="text-white">
             <p className="text-sm font-medium text-white/50 tracking-widest uppercase mb-4">
               Auditoria gratuita
             </p>
@@ -43,30 +36,17 @@ export function AuditForm() {
             </p>
 
             <div className="space-y-4">
-              {checkItems.map((item, index) => (
-                <motion.div
-                  key={item}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.08 }}
-                  className="flex items-center gap-3"
-                >
+              {checkItems.map((item) => (
+                <div key={item} className="flex items-center gap-3">
                   <CheckCircle2 className="w-4 h-4 text-green-400 flex-shrink-0" />
                   <span className="text-white/80">{item}</span>
-                </motion.div>
+                </div>
               ))}
             </div>
-          </motion.div>
+          </div>
 
           {/* Right column — WhatsApp CTA */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="lg:sticky lg:top-24"
-          >
+          <div className="lg:sticky lg:top-24">
             <div className="bg-black text-white p-8 lg:p-10 border border-white/10 rounded-sm">
               <div className="mb-8">
                 <h3
@@ -76,7 +56,7 @@ export function AuditForm() {
                   Fale com um consultor
                 </h3>
                 <p className="text-white/60 text-sm">
-                  Clique abaixo e receba sua analise gratuitamente
+                  Clique abaixo e receba sua análise gratuitamente
                 </p>
               </div>
 
@@ -119,7 +99,7 @@ export function AuditForm() {
                 </p>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

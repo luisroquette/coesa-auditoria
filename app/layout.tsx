@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Sua conta de energia pode estar errada",
     description:
-      "Auditoria gratuita de fatura de energia. 17 verificações automáticas. Resultado em 30 segundos.",
+      "Auditoria gratuita de conta de energia pelo WhatsApp. Um consultor COESA analisa 17 pontos da sua fatura e identifica cobranças indevidas.",
     type: "website",
     locale: "pt_BR",
     url: "https://auditoria.coesasolar.com.br",
@@ -67,7 +67,7 @@ const serviceSchema = {
   name: "Auditoria Gratuita de Fatura de Energia",
   serviceType: "Auditoria de Fatura de Energia Elétrica",
   description:
-    "Auditoria gratuita com 17 verificações automáticas na sua conta de energia elétrica. Identificamos cobranças indevidas e oportunidades de economia em menos de 30 segundos.",
+    "Auditoria gratuita de conta de energia. Um consultor COESA analisa 17 pontos da sua fatura de luz, identifica cobranças indevidas e apresenta oportunidades de economia.",
   provider: {
     "@id": "https://auditoria.coesasolar.com.br/#organization",
   },

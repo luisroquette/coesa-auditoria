@@ -3,19 +3,19 @@
 import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { CheckCircle2, MessageCircle, Phone } from "lucide-react";
+import { CheckCircle2, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { formatCurrency } from "@/lib/utils";
+import { formatCurrency, WHATSAPP_URL } from "@/lib/utils";
 
 const verificacoes = [
   "Verificando tarifa aplicada...",
   "Conferindo ICMS e PIS/COFINS...",
-  "Analisando bandeira tarifaria...",
+  "Analisando bandeira tarifária...",
   "Verificando consumo faturado...",
-  "Checando creditos de energia...",
-  "Avaliando iluminacao publica...",
+  "Checando créditos de energia...",
+  "Avaliando iluminação pública...",
   "Analisando demanda contratada...",
-  "Conferindo classe tarifaria...",
+  "Conferindo classe tarifária...",
   "Verificando multas e juros...",
   "Finalizando auditoria...",
 ];
@@ -42,7 +42,6 @@ export function ResultadoContent() {
   }, [currentStep]);
 
   const progress = Math.min((currentStep / verificacoes.length) * 100, 100);
-  const whatsappUrl = process.env.NEXT_PUBLIC_WHATSAPP_URL || "#";
 
   return (
     <section className="min-h-screen bg-[#0a0a0a] flex items-center justify-center pt-20 pb-20">
@@ -116,11 +115,11 @@ export function ResultadoContent() {
                 className="text-3xl md:text-4xl font-medium mb-4"
                 style={{ fontFamily: "Arial, Helvetica, sans-serif" }}
               >
-                Auditoria concluida, {nome}!
+                Auditoria concluída, {nome}!
               </h2>
 
               <p className="text-lg text-white/70 mb-10 max-w-lg mx-auto">
-                Identificamos uma oportunidade de economia de ate{" "}
+                Identificamos uma oportunidade de economia de até{" "}
                 <span className="text-green-400 font-medium">{pct}%</span> na
                 sua conta de energia.
               </p>
@@ -133,7 +132,7 @@ export function ResultadoContent() {
                 className="bg-white/5 border border-white/10 rounded-lg p-8 mb-10"
               >
                 <p className="text-sm text-white/50 mb-2">
-                  Economia estimada por mes
+                  Economia estimada por mês
                 </p>
                 <p
                   className="text-4xl md:text-5xl font-medium text-green-400"
@@ -153,17 +152,16 @@ export function ResultadoContent() {
                 transition={{ delay: 0.6 }}
                 className="space-y-4"
               >
-                <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
+                <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
                   <Button variant="landing" size="xl" className="w-full sm:w-auto min-w-[300px]">
                     <MessageCircle className="w-5 h-5 mr-2" />
                     Falar com consultor COESA
                   </Button>
                 </a>
 
-                <div className="flex items-center justify-center gap-2 text-sm text-white/40">
-                  <Phone className="w-4 h-4" />
-                  <p>Um consultor entrara em contato pelo telefone informado</p>
-                </div>
+                <p className="text-sm text-white/40">
+                  Um consultor entrará em contato pelo WhatsApp
+                </p>
               </motion.div>
             </motion.div>
           )}
