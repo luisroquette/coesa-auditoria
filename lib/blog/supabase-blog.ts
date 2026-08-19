@@ -1,11 +1,12 @@
 // Autoblog do auditoria.coesasolar.com.br — plano B (19/08/2026):
 // tabelas prefixadas coesa_* no schema public do Supabase do CF Gauss
 // (projeto fvyknyvetpbxtdagrxqr), porque o Supabase do próprio site
-// (ztailhc...) está em conta inacessível. Prefixo evita misturar com as
-// tabelas articles/blog_run_log do blog do CF Gauss.
+// (ztailhc...) está em conta inacessível.
 //
-// Leituras usam a chave anon (RLS permite SELECT público de artigos published);
-// escritas usam service role, só em server components/route handlers.
+// Sem service_role: leituras usam a chave anon (RLS permite SELECT público
+// de artigos published); escritas usam RPCs SECURITY DEFINER
+// (coesa_blog_claim_run / coesa_blog_insert_article / coesa_blog_insert_run_log)
+// que validam o CRON_SECRET por hash — mesmo padrão dos gates admin_tem_*.
 import { createClient } from '@supabase/supabase-js';
 
 const TABLES = {
@@ -13,16 +14,14 @@ const TABLES = {
   runLog: 'coesa_blog_run_log',
 } as const;
 
-function getReadClient() {
+function getClient() {
   const url = process.env.BLOG_SUPABASE_URL!;
   const key = process.env.BLOG_SUPABASE_ANON_KEY!;
   return createClient(url, key, { auth: { persistSession: false } });
 }
 
-function getWriteClient() {
-  const url = process.env.BLOG_SUPABASE_URL!;
-  const key = process.env.BLOG_SUPABASE_SERVICE_ROLE_KEY!;
-  return createClient(url, key, { auth: { persistSession: false } });
+function getCronSecret(): string {
+  return process.env.CRON_SECRET ?? '';
 }
 
 export interface Article {
@@ -45,44 +44,21 @@ export interface InsertArticleInput {
   keyword: string | null;
 }
 
-function getRunDate(): string {
-  return new Date().toISOString().slice(0, 10);
-}
-
 /** Claims today's run before generation, preventing concurrent cron duplicates. */
 export async function claimBlogRunToday(): Promise<boolean> {
-  const supabase = getWriteClient();
-  const runDate = getRunDate();
-  const { data: existing } = await supabase
-    .from(TABLES.runLog)
-    .select('status, created_at')
-    .eq('run_date', runDate)
-    .single();
-
-  if (existing?.status === 'success') return false;
-
-  const staleBefore = new Date(Date.now() - 10 * 60_000).toISOString();
-  if (existing?.status === 'running' && existing.created_at >= staleBefore) return false;
-
-  if (existing?.status === 'error' || existing?.status === 'running') {
-    let retry = supabase
-      .from(TABLES.runLog)
-      .update({ status: 'running', error: null })
-      .eq('run_date', runDate)
-      .eq('status', existing.status);
-    if (existing.status === 'running') retry = retry.lt('created_at', staleBefore);
-    const { data } = await retry.select('id').maybeSingle();
-    return !!data;
+  const supabase = getClient();
+  const { data, error } = await supabase.rpc('coesa_blog_claim_run', {
+    p_secret: getCronSecret(),
+  });
+  if (error) {
+    console.error('[claimBlogRunToday] RPC error:', error.message);
+    return false;
   }
-
-  const { error } = await supabase
-    .from(TABLES.runLog)
-    .insert({ run_date: runDate, status: 'running' });
-  return !error;
+  return data === true;
 }
 
 export async function getPublishedKeywords(): Promise<string[]> {
-  const supabase = getReadClient();
+  const supabase = getClient();
   const { data } = await supabase
     .from(TABLES.articles)
     .select('keyword')
@@ -91,17 +67,19 @@ export async function getPublishedKeywords(): Promise<string[]> {
 }
 
 export async function insertArticle(input: InsertArticleInput): Promise<string> {
-  const supabase = getWriteClient();
-  const candidates = [input.slug, `${input.slug}-2`, `${input.slug}-3`];
-
-  for (const slug of candidates) {
-    const { error } = await supabase.from('articles').insert({ ...input, slug });
-    if (!error) return slug;
-    // 23505 = unique_violation in PostgreSQL
-    if (error.code !== '23505') throw new Error(`Supabase insert error: ${error.message}`);
-  }
-
-  throw new Error('slug_collision');
+  const supabase = getClient();
+  const { data, error } = await supabase.rpc('coesa_blog_insert_article', {
+    p_secret: getCronSecret(),
+    p_slug: input.slug,
+    p_title: input.title,
+    p_meta_desc: input.meta_desc,
+    p_content: input.content,
+    p_cover_url: input.cover_url,
+    p_keyword: input.keyword,
+  });
+  if (error) throw new Error(`Supabase insert error: ${error.message}`);
+  if (!data) throw new Error('slug_collision');
+  return data as string;
 }
 
 export async function insertRunLog(params: {
@@ -109,17 +87,18 @@ export async function insertRunLog(params: {
   status: 'success' | 'error';
   error?: string;
 }): Promise<void> {
-  const supabase = getWriteClient();
-  const { error } = await supabase
-    .from(TABLES.runLog)
-    .update(params)
-    .eq('run_date', getRunDate())
-    .eq('status', 'running');
-  if (error) console.error('[insertRunLog] Supabase error:', error.message);
+  const supabase = getClient();
+  const { error } = await supabase.rpc('coesa_blog_insert_run_log', {
+    p_secret: getCronSecret(),
+    p_keyword: params.keyword ?? null,
+    p_status: params.status,
+    p_error: params.error ?? null,
+  });
+  if (error) console.error('[insertRunLog] RPC error:', error.message);
 }
 
 export async function getAllArticles(): Promise<Article[]> {
-  const supabase = getReadClient();
+  const supabase = getClient();
   const { data } = await supabase
     .from(TABLES.articles)
     .select('*')
@@ -129,7 +108,7 @@ export async function getAllArticles(): Promise<Article[]> {
 }
 
 export async function getArticleBySlug(slug: string): Promise<Article | null> {
-  const supabase = getReadClient();
+  const supabase = getClient();
   const { data } = await supabase
     .from(TABLES.articles)
     .select('*')
@@ -143,7 +122,14 @@ export async function uploadCoverImage(
   slug: string,
   buffer: Buffer
 ): Promise<string | null> {
-  const supabase = getWriteClient();
+  // Capas desligadas nesta instalação (imageGenerationEnabled: false).
+  // Sem service_role no env, o bucket não é gravável — retorna null.
+  const serviceKey = process.env.BLOG_SUPABASE_SERVICE_ROLE_KEY;
+  if (!serviceKey) return null;
+
+  const supabase = createClient(process.env.BLOG_SUPABASE_URL!, serviceKey, {
+    auth: { persistSession: false },
+  });
   const path = `${slug}.png`;
   const { error } = await supabase.storage
     .from('blog-covers')
