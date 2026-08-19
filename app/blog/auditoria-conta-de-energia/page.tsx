@@ -205,7 +205,7 @@ export default function AuditoriaGuiaPage() {
               O problema é agravado pelo fato de que a maioria dos consumidores
               — tanto residenciais quanto comerciais — não tem o conhecimento técnico
               necessário para identificar erros em uma fatura. O ICMS, por exemplo,
-              é calculado de forma peculiar (cálculo "por dentro", sobre si mesmo),
+              é calculado de forma peculiar (cálculo &ldquo;por dentro&rdquo;, sobre si mesmo),
               o que torna quase impossível verificar manualmente se o valor está correto
               sem conhecer a legislação estadual e a estrutura tarifária específica
               da distribuidora.

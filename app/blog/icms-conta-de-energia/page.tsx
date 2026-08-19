@@ -84,7 +84,7 @@ export default function IcmsPage() {
             <p>
               O que poucos consumidores sabem é que a base de cálculo do ICMS é
               feita de forma peculiar: o imposto incide sobre si mesmo, em um
-              mecanismo chamado cálculo "por dentro". Isso significa que a alíquota
+              mecanismo chamado cálculo &ldquo;por dentro&rdquo;. Isso significa que a alíquota
               efetiva é maior do que a alíquota nominal indicada na fatura.
             </p>
 

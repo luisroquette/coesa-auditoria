@@ -133,8 +133,8 @@ export default function BandeiraPage() {
             </h2>
             <p>
               A cobrança de bandeira tarifária aparece como um item separado na
-              sua fatura de energia, geralmente identificado como "Bandeira
-              Tarifária" ou pelo nome da cor correspondente. O valor é calculado
+              sua fatura de energia, geralmente identificado como &ldquo;Bandeira
+              Tarifária&rdquo; ou pelo nome da cor correspondente. O valor é calculado
               multiplicando a taxa da bandeira pelo consumo em kWh dividido por
               100.
             </p>
