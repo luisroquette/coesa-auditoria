@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { WhatsAppFloat } from "@/components/whatsapp-float";
+import { getAllArticles } from "@/lib/blog/supabase-blog";
 
 export const metadata: Metadata = {
   title: "Blog — Economia de Energia Elétrica | COESA",
@@ -79,7 +80,35 @@ const posts = [
   },
 ];
 
-export default function BlogPage() {
+export default async function BlogPage() {
+  // Artigos do autoblog (banco), listados depois dos artigos estáticos.
+  let autoblogPosts: {
+    slug: string;
+    title: string;
+    description: string | null;
+    keyword: string | null;
+    published_at: string;
+  }[] = [];
+  try {
+    const articles = await getAllArticles();
+    autoblogPosts = articles.map((a) => ({
+      slug: a.slug,
+      title: a.title,
+      description: a.meta_desc,
+      keyword: a.keyword,
+      published_at: a.published_at,
+    }));
+  } catch {
+    // Supabase indisponível — listagem segue só com os artigos estáticos.
+  }
+
+  const formatDate = (iso: string) =>
+    new Date(iso).toLocaleDateString("pt-BR", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    });
+
   return (
     <>
       <Navbar />
@@ -127,6 +156,50 @@ export default function BlogPage() {
                 </p>
               </Link>
             ))}
+
+            {autoblogPosts.length > 0 && (
+              <>
+                <div className="pt-4">
+                  <h2
+                    className="text-2xl font-medium text-white mb-1"
+                    style={{ fontFamily: "Arial, Helvetica, sans-serif" }}
+                  >
+                    Novos artigos
+                  </h2>
+                  <p className="text-sm text-white/40">
+                    Publicados automaticamente pelo nosso time de conteúdo.
+                  </p>
+                </div>
+                {autoblogPosts.map((post) => (
+                  <Link
+                    key={post.slug}
+                    href={`/blog/${post.slug}`}
+                    className="group block p-6 border border-white/10 rounded-sm hover:border-white/25 transition-colors"
+                  >
+                    <div className="flex items-center gap-3 mb-3">
+                      <span className="text-xs font-semibold uppercase tracking-widest text-green-400">
+                        {post.keyword ?? "Artigo"}
+                      </span>
+                      <span className="text-xs text-white/30">·</span>
+                      <span className="text-xs text-white/30">
+                        {formatDate(post.published_at)}
+                      </span>
+                    </div>
+                    <h2
+                      className="text-xl font-medium mb-2 group-hover:text-green-400 transition-colors leading-snug"
+                      style={{ fontFamily: "Arial, Helvetica, sans-serif" }}
+                    >
+                      {post.title}
+                    </h2>
+                    {post.description && (
+                      <p className="text-sm text-white/55 leading-relaxed">
+                        {post.description}
+                      </p>
+                    )}
+                  </Link>
+                ))}
+              </>
+            )}
           </div>
         </div>
       </main>

@@ -1,1 +1,14 @@
-{}
+{
+  "crons": [
+    {
+      "path": "/api/blog/generate",
+      "schedule": "0 9 * * *"
+    }
+  ],
+  "functions": {
+    "app/api/blog/generate/route.ts": {
+      "maxDuration": 300,
+      "memory": 1024
+    }
+  }
+}

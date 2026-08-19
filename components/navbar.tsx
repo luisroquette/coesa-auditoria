@@ -9,6 +9,7 @@ import { WHATSAPP_URL } from "@/lib/utils";
 const navLinks = [
   { href: "#como-funciona", label: "Como Funciona" },
   { href: "#verificacoes", label: "Verificações" },
+  { href: "/blog", label: "Blog" },
   { href: "#faq", label: "FAQ" },
 ];
 
