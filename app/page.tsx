@@ -10,7 +10,6 @@ import { AboutService } from "@/components/about-service";
 import { WhatWeCheck } from "@/components/what-we-check";
 import { SolarCallout } from "@/components/solar-callout";
 import { SocialProof } from "@/components/social-proof";
-import { HomeBlogSection } from "@/components/home-blog-section";
 import { FAQ } from "@/components/faq";
 import { Footer } from "@/components/footer";
 import { WhatsAppFloat } from "@/components/whatsapp-float";
@@ -36,7 +35,6 @@ export default function Home() {
       <WhatWeCheck />
       <SolarCallout />
       <SocialProof />
-      <HomeBlogSection />
       <FAQ />
       <Footer />
       <WhatsAppFloat />
